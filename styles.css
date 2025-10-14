@@ -1,0 +1,171 @@
+ /* General styling for the page */
+ body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Main container for the tool */
+.container {
+    width: 100%;
+    max-width: 900px;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #1a2533;
+    border-bottom: 2px solid #eef2f5;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* Styling for the collapsible data collection section */
+details {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #0056b3;
+}
+
+/* Table for data inputs */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f9fafb;
+}
+
+td:first-child {
+    font-weight: bold;
+    background-color: #f9fafb;
+    width: 15%;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Text area for pasting the report */
+textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+/* Container for the action buttons */
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.2s;
+}
+
+#checkButton {
+    background-color: #28a745; /* Green */
+}
+
+#checkButton:hover {
+    background-color: #218838;
+}
+
+#clearButton {
+    background-color: #dc3545; /* Red */
+}
+
+#clearButton:hover {
+    background-color: #c82333;
+}
+
+/* Results section */
+#resultsContainer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eef2f5;
+}
+
+/* General styling for result tags */
+.tag {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Tag for missing data (red with white text) */
+.tag-not-found {
+    background-color: #c82333; /* A slightly darker red */
+    color: white;
+}
+
+/* Tag for success message */
+.tag-success {
+    background-color: #218838; /* A slightly darker green */
+    color: white;
+}
+
+/* Minimal styles for tab functionality, you can move them to your CSS file */
+.tab-content, .text-tab-content { 
+    display: none; 
+}
+.tab-content.active, .text-tab-content.active { 
+    display: block; 
+}
+.tab-link, .text-tab-link {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-right: 5px;
+    background-color: #e9ecef;
+    color: #333;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+.tab-link.active, .text-tab-link.active { 
+    background-color: #34324e; 
+    color: white;
+}
+#platformSelector { margin-bottom: 15px; }
+#platformSelector label { margin-right: 15px; }
