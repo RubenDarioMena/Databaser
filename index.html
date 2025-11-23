@@ -3,106 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herramienta de Verificación v2</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Herramienta de Verificación (Minimal)</title>
+    <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Herramienta de Verificación</h1>
+        <header>
+            <h1>Herramienta de Verificación (Minimal)</h1>
+        </header>
 
-        <details open>
-            <summary>Data Collection</summary>
-            <div class="tab-container">
-                <button class="tab-link active" onclick="openTab(event, 'Data1')">Data 1</button>
-                <button class="tab-link" onclick="openTab(event, 'Data2')">Data 2</button>
-                <button class="tab-link" onclick="openTab(event, 'Data3')">Data 3</button>
-                <button class="tab-link" onclick="openTab(event, 'Data4')">Data 4</button>
+        <section class="section-box">
+            <div class="toolbar">
+                <h2>Colección de Datos</h2>
+                <div class="actions">
+                    <button id="btn-add-data" class="btn-secondary">+ Dato</button>
+                    <button id="btn-clear-datos" class="btn-danger">Limpiar Datos</button>
+                </div>
             </div>
 
-            <div id="Data1" class="tab-content" style="display: block;">
-                <table class="dataTable">
-                    <tbody>
-                        <tr><td>Mac</td><td><input type="text" placeholder="Data 1 para Mac..."></td></tr>
-                        <tr><td>Win</td><td><input type="text" placeholder="Data 1 para Win..."></td></tr>
-                        <tr><td>Android</td><td><input type="text" placeholder="Data 1 para Android..."></td></tr>
-                        <tr><td>iOS</td><td><input type="text" placeholder="Data 1 para iOS..."></td></tr>
-                        <tr><td>Linux</td><td><input type="text" placeholder="Data 1 para Linux..."></td></tr>
-                    </tbody>
-                </table>
+            <div class="tabs-header" id="data-tabs">
+                </div>
+
+            <div id="data-views">
+                </div>
+        </section>
+
+        <section class="section-box">
+            <div class="toolbar">
+                <h2>Plataformas y Texto Base</h2>
+                <button id="btn-add-platform" class="btn-secondary">+ Plataforma</button>
             </div>
 
-            <div id="Data2" class="tab-content">
-                <table class="dataTable">
-                     <tbody>
-                        <tr><td>Mac</td><td><input type="text" placeholder="Data 2 para Mac..."></td></tr>
-                        <tr><td>Win</td><td><input type="text" placeholder="Data 2 para Win..."></td></tr>
-                        <tr><td>Android</td><td><input type="text" placeholder="Data 2 para Android..."></td></tr>
-                        <tr><td>iOS</td><td><input type="text" placeholder="Data 2 para iOS..."></td></tr>
-                        <tr><td>Linux</td><td><input type="text" placeholder="Data 2 para Linux..."></td></tr>
-                    </tbody>
-                </table>
+            <div id="platforms" class="platforms-container">
+                </div>
+
+            <hr>
+
+            <div class="tabs-header" id="base-tabs">
+                <button class="tab-btn active" data-target="txt-comentarios">Comentarios</button>
+                <button class="tab-btn" data-target="txt-bugs">Bugs</button>
             </div>
 
-            <div id="Data3" class="tab-content">
-                 <table class="dataTable">
-                     <tbody>
-                        <tr><td>Mac</td><td><input type="text" placeholder="Data 3 para Mac..."></td></tr>
-                        <tr><td>Win</td><td><input type="text" placeholder="Data 3 para Win..."></td></tr>
-                        <tr><td>Android</td><td><input type="text" placeholder="Data 3 para Android..."></td></tr>
-                        <tr><td>iOS</td><td><input type="text" placeholder="Data 3 para iOS..."></td></tr>
-                        <tr><td>Linux</td><td><input type="text" placeholder="Data 3 para Linux..."></td></tr>
-                    </tbody>
-                </table>
+            <div id="base-views">
+                <textarea id="txt-comentarios" class="tab-view active" placeholder="Pega aquí el texto de Comentarios..."></textarea>
+                <textarea id="txt-bugs" class="tab-view" placeholder="Pega aquí el texto de Bugs..."></textarea>
             </div>
+        </section>
 
-            <div id="Data4" class="tab-content">
-                 <table class="dataTable">
-                     <tbody>
-                        <tr><td>Mac</td><td><input type="text" placeholder="Data 4 para Mac..."></td></tr>
-                        <tr><td>Win</td><td><input type="text" placeholder="Data 4 para Win..."></td></tr>
-                        <tr><td>Android</td><td><input type="text" placeholder="Data 4 para Android..."></td></tr>
-                        <tr><td>iOS</td><td><input type="text" placeholder="Data 4 para iOS..."></td></tr>
-                        <tr><td>Linux</td><td><input type="text" placeholder="Data 4 para Linux..."></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </details>
+        <section class="main-actions">
+            <button id="btn-check" class="btn-primary big">VERIFICAR (Check)</button>
+            <button id="btn-save" class="btn-secondary">Guardar</button>
+            <button id="btn-clear" class="btn-danger">Limpiar Todo</button>
+        </section>
 
-        <h2>Texto a Verificar</h2>
-
-        <p><strong>Selecciona las plataformas que aplican al texto:</strong></p>
-        <div id="platformSelector">
-            <label><input type="checkbox" name="platform" value="Mac"> Mac</label>
-            <label><input type="checkbox" name="platform" value="Win"> Win</label>
-            <label><input type="checkbox" name="platform" value="Android"> Android</label>
-            <label><input type="checkbox" name="platform" value="iOS"> iOS</label>
-            <label><input type="checkbox" name="platform" value="Linux"> Linux</label>
-        </div>
-        
-        <div class="tab-container">
-            <button class="text-tab-link active" onclick="openTextTab(event, 'Comentarios')">Comentarios</button>
-            <button class="text-tab-link" onclick="openTextTab(event, 'Bugs')">Bugs</button>
-        </div>
-        
-        <div id="Comentarios" class="text-tab-content" style="display: block;">
-            <textarea id="textToCheckComentarios" placeholder="Pega aquí el texto de los comentarios para verificar..."></textarea>
-        </div>
-        <div id="Bugs" class="text-tab-content">
-            <textarea id="textToCheckBugs" placeholder="Pega aquí el texto del bug para verificar..."></textarea>
-        </div>
-        
-        <div class="button-container">
-            <button id="checkButton">Check</button>
-            <button id="clearButton">Clear</button>
-        </div>
-
-        <h2>Resultados</h2>
-        <div id="resultsContainer">
-            </div>
+        <section id="results" class="results-box">
+            <p class="placeholder-text">Los resultados aparecerán aquí...</p>
+        </section>
     </div>
 
-    <script src="script.js"></script>
-
+    <script src="app.js"></script>
 </body>
 </html>
