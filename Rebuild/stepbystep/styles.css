@@ -1,0 +1,12 @@
+/* Por ahora, solo le daremos un poco de aire para no verlo todo pegado */
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+#app {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}

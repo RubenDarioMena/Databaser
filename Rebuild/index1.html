@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mi Primera App de Verificación</title>
+    <!-- Aquí conectamos los estilos (la pintura) -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Este es el contenedor principal, la "caja" donde vivirá todo -->
+    <div id="app">
+        <h1>Panel de Control</h1>
+
+        <!-- Input y Botón para añadir (La Interfaz de Entrada) -->
+        <div class="controls">
+            <input type="text" id="input-nueva-plataforma" placeholder="Nueva plataforma...">
+            <button id="btn-agregar">Agregar</button>
+        </div>
+
+        <!-- Aquí es donde JS dibujará la lista (La Salida) -->
+        <h2>Lista de Plataformas</h2>
+        <ul id="lista-plataformas">
+            Test
+            <!-- JS llenará esto. Por ahora está vacío. -->
+        </ul>
+    </div>
+
+    <!-- Aquí conectamos la lógica (el cerebro) -->
+    <script src="app.js"></script>
+</body>
+
+</html>
