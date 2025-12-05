@@ -1,111 +1,205 @@
 
-let platforms = ['PC','PS5','XB4'];
+let state = {
+	platforms: ['PC', 'PS5', 'XB4'],
+	data: [
+	{id: 'd1', name: 'Data 1', text:''},
+	{id: 'd2', name: 'Data 2', text:''}
+	],
+	tabActive: 'd1'
+}
 
-const listElement = document.getElementById("data-tabs");
-const inputElement = document.getElementById("new-platform");
-const btnAdd = document.getElementById("btn-add");
 
-console.log(listElement);
-console.log(inputElement);
-console.log(btnAdd);
+const tabsHeader = document.getElementById("tabs-header");
+const tabContent = document.getElementById("tab-content");
+const inputTab = document.getElementById("new-data-field");
+const btnAddTab = document.getElementById("btn-add-field");
 
-function render(){
-	listElement.innerHTML='';
+const listPlatforms = document.getElementById("platforms-check");
+const tabContent = document.getElementById("vf-content");
+const inputPlatform = document.getElementById("new-platform");
+const btnAddPlatform = document.getElementById("btn-add-platform");
+
+console.log(listPlatforms);
+console.log(inputPlatform);
+console.log(btnAddPlatform);
+
+function renderAll(){
+	renderPlatform();
+	renderTabs();
+	updateTabContent();
 	
-	platforms.forEach((name,index) => {
-		const item = document.createElement('li');
-		item.innerHTML=`
+}
+
+
+
+function renderPlatform() {
+    listPlatforms.innerHTML = '';
+
+    state.platforms.forEach((name, index) => {
+        const item = document.createElement('li');
+        item.innerHTML = `
 		<span>${name}</span>
 		<button onclick="deletePlatform(${index})">borrar</button>
 		`;
-		listElement.appendChild(item);
-	}
-	)
+        listPlatforms.appendChild(item);
+    });
 }
+
+function renderTabs(){
+	tabsHeader.innerHTML = '';
+	
+	state.data.forEach(data => {
+		const btn = document.createElement('button')
+		btn.textContent = data.name;
+		btn.ClassName = 'tab-btn';
+		if(data.id === state.tabActive){
+			btn.classList.add('active');
+		}
+		btn.onclick = () => changeTab(state.id);
+		
+		tabsHeader.appendChild(btn)
+	});
+}
+
+updateTabContent(){
+	const ActiveData = state.data.find(d => d.id === state.tabActive)
+
+	if(ActiveData){
+		tab-content.value = ActiveData.text;
+	}
+}
+
+
+
 
 function addPlatform() {
-	const newElement = inputElement.value;
-	if (newElement !== ''){
-		platforms.push(newElement);
-		inputElement.value = '';
-		render();
-	}
+    const newElement = inputPlatform.value;
+    if (newElement !== '') {
+        state.platforms.push(newElement);
+        inputPlatform.value = '';
+        render();
+    }
 }
 
 
-window.deletePlatform = function(index) {
-	platforms.splice(index,1);
-	render();
+window.deletePlatform = function (index) {
+    platforms.splice(index, 1);
+    render();
 }
 
 
 
-btnAdd.addEventListener('click', addPlatform)
+btnAddPlatform.addEventListener('click', addPlatform)
 
-render()
+renderAll();
 
 
 /*
-// --- 1. EL ESTADO (La Memoria) ---
-// Aquí vive la "verdad". La interfaz es solo un reflejo de esto.
-let plataformas = ['PC', 'PlayStation 5', 'Xbox Series'];
+/ --- 1. EL ESTADO (La Memoria) ---
+// Ahora 'datos' es un Array de Objetos, no de textos simples.
+let estado = {
+    plataformas: ['PC', 'PlayStation 5', 'Xbox Series'],
+    datos: [
+        { id: 'd1', nombre: 'Data 1', texto: '' },
+        { id: 'd2', nombre: 'Data 2', texto: '' }
+    ],
+    tabActiva: 'd1' // Guardamos el ID de la pestaña que estamos viendo
+};
 
-// --- 2. REFERENCIAS AL DOM (Los Brazos) ---
-// Buscamos los elementos una sola vez para no buscarlos cada vez que hacemos algo.
-const listaElemento = document.getElementById('lista-plataformas');
-const inputElemento = document.getElementById('input-nueva-plataforma');
+// --- 2. REFERENCIAS AL DOM ---
+const listaPlataformas = document.getElementById('lista-plataformas');
+const inputPlataforma = document.getElementById('input-nueva-plataforma');
 const btnAgregar = document.getElementById('btn-agregar');
 
-// --- 3. FUNCIÓN DE RENDERIZADO (El Pintor) ---
-// Esta función borra todo y lo vuelve a dibujar basado en el Estado.
-// Es "declarativa": "Así quiero que se vea", en lugar de "Añade uno aquí, borra otro allá".
-function renderizar() {
-    console.log("Renderizando lista...", plataformas); // Chivato
+const tabsHeader = document.getElementById('tabs-header');
+const tabContenido = document.getElementById('tab-contenido');
 
-    // Paso A: Limpiar el lienzo (borrar lo que había antes)
-    listaElemento.innerHTML = '';
+// --- 3. RENDERIZADO (El Pintor) ---
 
-    // Paso B: Crear elementos por cada dato en el Estado
-    plataformas.forEach((nombre, index) => {
-        // 1. Crear el elemento <li>
+function renderizarTodo() {
+    renderizarPlataformas();
+    renderizarTabs();
+    actualizarContenidoTab();
+}
+
+function renderizarPlataformas() {
+    listaPlataformas.innerHTML = '';
+    estado.plataformas.forEach((nombre, index) => {
         const item = document.createElement('li');
-
-        // 2. Ponerle contenido (Texto + Botón Borrar)
-        // Usamos template strings (``) para insertar variables fácilmente
         item.innerHTML = `
             <span>${nombre}</span>
             <button onclick="borrarPlataforma(${index})">Eliminar</button>
         `;
-
-        // 3. Añadirlo al padre (<ul>)
-        listaElemento.appendChild(item);
+        listaPlataformas.appendChild(item);
     });
 }
 
-// --- 4. FUNCIONES DE LÓGICA (El Cerebro) ---
+function renderizarTabs() {
+    tabsHeader.innerHTML = '';
 
-function agregarPlataforma() {
-    const nuevoNombre = inputElemento.value; // Leer lo que escribió el usuario
+    estado.datos.forEach(dato => {
+        const btn = document.createElement('button');
+        btn.textContent = dato.nombre;
+        btn.className = 'tab-btn';
 
-    if (nuevoNombre !== '') { // Validación básica
-        plataformas.push(nuevoNombre); // Modificar el Estado
-        inputElemento.value = '';      // Limpiar el input
-        renderizar();                  // ¡Redibujar!
+        // Si esta pestaña es la activa, le ponemos la clase especial
+        if (dato.id === estado.tabActiva) {
+            btn.classList.add('active');
+        }
+
+        // Al hacer click, cambiamos la pestaña activa
+        btn.onclick = () => cambiarTab(dato.id);
+
+        tabsHeader.appendChild(btn);
+    });
+}
+
+function actualizarContenidoTab() {
+    // 1. Buscar el objeto de datos correspondiente a la tab activa
+    const datoActivo = estado.datos.find(d => d.id === estado.tabActiva);
+
+    // 2. Poner su texto en el textarea
+    if (datoActivo) {
+        tabContenido.value = datoActivo.texto;
     }
 }
 
-// Esta función se llama desde el HTML (onclick)
-// Recibe el índice (posición) del elemento a borrar
+// --- 4. LÓGICA (El Cerebro) ---
+
+function agregarPlataforma() {
+    const nombre = inputPlataforma.value;
+    if (nombre) {
+        estado.plataformas.push(nombre);
+        inputPlataforma.value = '';
+        renderizarPlataformas();
+    }
+}
+
 window.borrarPlataforma = function (index) {
-    plataformas.splice(index, 1); // Borrar 1 elemento en la posición 'index'
-    renderizar();                 // ¡Redibujar!
+    estado.plataformas.splice(index, 1);
+    renderizarPlataformas();
 };
 
-// --- 5. EVENTOS (Los Oídos) ---
-// Escuchamos el click del botón
+function cambiarTab(nuevoId) {
+    estado.tabActiva = nuevoId;
+    renderizarTabs();       // Para actualizar qué botón se ve "activo"
+    actualizarContenidoTab(); // Para cambiar el texto del textarea
+}
+
+// Cuando el usuario escribe en el textarea, guardamos eso en el Estado
+tabContenido.addEventListener('input', (e) => {
+    const textoEscrito = e.target.value;
+
+    // Buscar el dato activo y actualizar su propiedad .texto
+    const datoActivo = estado.datos.find(d => d.id === estado.tabActiva);
+    if (datoActivo) {
+        datoActivo.texto = textoEscrito;
+    }
+});
+
+// --- 5. EVENTOS ---
 btnAgregar.addEventListener('click', agregarPlataforma);
 
 // --- 6. INICIO ---
-// Arrancamos todo por primera vez
-renderizar();
+renderizarTodo();
 */

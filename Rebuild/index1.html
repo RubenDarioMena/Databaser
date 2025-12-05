@@ -16,18 +16,45 @@
     <div id="app">
         <h1>Panel de Control</h1>
 
-        <!-- Input y Botón para añadir (La Interfaz de Entrada) -->
-        <div class="controls">
-            <input type="text" id="input-nueva-plataforma" placeholder="Nueva plataforma...">
-            <button id="btn-agregar">Agregar</button>
+        <!-- SECCIÓN 1: PLATAFORMAS Y TEXTO BASE -->
+        <div class="section">
+            <h2>1. Plataformas y Texto Base</h2>
+
+            <div class="controls">
+                <input type="text" id="input-nueva-plataforma" placeholder="Nueva plataforma...">
+                <button id="btn-agregar">Agregar</button>
+            </div>
+
+            <!-- Lista de Checkboxes -->
+            <ul id="lista-plataformas" class="platform-list">
+                <!-- JS llenará esto -->
+            </ul>
+
+            <!-- Nuevo Textarea Integrado -->
+            <div class="base-text-container">
+                <h3>Texto Base (Comentarios/Bugs)</h3>
+                <textarea id="texto-base" placeholder="Pega aquí el texto base para verificar..."></textarea>
+            </div>
         </div>
 
-        <!-- Aquí es donde JS dibujará la lista (La Salida) -->
-        <h2>Lista de Plataformas</h2>
-        <ul id="lista-plataformas">
-            Test
-            <!-- JS llenará esto. Por ahora está vacío. -->
-        </ul>
+        <hr>
+
+        <!-- SECCIÓN 2: DATOS DE PRUEBA -->
+        <div class="section">
+            <h2>2. Datos de Prueba</h2>
+
+            <!-- Controles de Tabs -->
+            <div class="tab-controls">
+                <button id="btn-nueva-tab" class="btn-small">+ Nueva Tab</button>
+                <button id="btn-borrar-tab" class="btn-small btn-danger">Borrar Tab Actual</button>
+            </div>
+
+            <!-- Aquí irán los botones de las pestañas -->
+            <div id="tabs-header" class="tabs-header"></div>
+
+            <!-- Aquí irá el contenido de la pestaña activa -->
+            <textarea id="tab-contenido" placeholder="Escribe aquí el contenido de la pestaña..."></textarea>
+        </div>
     </div>
 
     <!-- Aquí conectamos la lógica (el cerebro) -->

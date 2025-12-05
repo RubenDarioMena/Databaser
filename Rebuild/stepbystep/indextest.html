@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Databaser</title>
+	<style>
+	.tab-btn {
+    background-color: white;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+    /* Truco visual para conectar con el textarea */
+    position: relative;
+    top: 1px;
+}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+        <h1>Panel de Control</h1>
+
+        <!-- SECCIÓN 1: PLATAFORMAS -->
+        <div class="section">
+            <h2>1. Plataformas</h2>
+            <div class="controls">
+                <input type="text" id="input-nueva-plataforma" placeholder="Nueva plataforma...">
+                <button id="btn-agregar">Agregar</button>
+            </div>
+            <ul id="lista-plataformas">
+                <!-- JS llenará esto -->
+            </ul>
+        </div>
+
+        <hr>
+
+        <!-- SECCIÓN 2: DATOS (NUEVO) -->
+        <div class="section">
+            <h2>2. Datos de Prueba</h2>
+
+            <!-- Aquí irán los botones de las pestañas -->
+            <div id="tabs-header" class="tabs-header">
+			<button class="tab-btn">Dato 1</button>
+			</div>
+
+            <!-- Aquí irá el contenido de la pestaña activa -->
+            <textarea id="tab-contenido" placeholder="Escribe aquí el contenido de la pestaña..."></textarea>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,27 @@
 	<title>Databaser</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 	<h1>Databaser</h1>
 	<div id="app">
-		<h2>Datos</h2>
-		<div>
-			<input type="text" id="new-platform" placeholder="Nueva-plataforma...">
-			<button id="btn-add">Agregar</button>
-		</div>
-		<nav>
-			<ul id="data-tabs">
-			Test
+		<section>
+		<h2>Datos de prueba</h2>
+			<input type="text" id="new-data-field" placeholder="New data field...">
+			<button id="btn-add-field">Agregar</button>
+			<div id="tabs-header" class="tabs-header"></div>
+			<textarea id="tab-content" placeholder="Add the data here..."></textarea>
+		</section>
+		<hr>
+		<section>
+		<h2>Plataformas</h2>
+			<input type="text" id="new-platform" placeholder="New platform...">
+			<button id="btn-add-platform">Agregar</button>
+			<ul id="platforms-check">
+				Test
 			</ul>
-		</nav>
+			<textarea id="vf-content" placeholder="Add the verified here..."></textarea>
+		</section>
 	</div>
 	<script src="app.js"></script>
 </body>
