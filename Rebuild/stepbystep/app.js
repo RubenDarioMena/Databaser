@@ -5,7 +5,8 @@ let state = {
 	{id: 'd1', name: 'Data 1', text:''},
 	{id: 'd2', name: 'Data 2', text:''}
 	],
-	tabActive: 'd1'
+	tabActive: 'd1',
+	BaseText: ''
 }
 
 
@@ -13,9 +14,10 @@ const tabsHeader = document.getElementById("tabs-header");
 const tabContent = document.getElementById("tab-content");
 const inputTab = document.getElementById("new-data-field");
 const btnAddTab = document.getElementById("btn-add-field");
+const btnDeleteTab = document.getElementById("btn-delete-tab")
 
 const listPlatforms = document.getElementById("platforms-check");
-const tabContent = document.getElementById("vf-content");
+const VFContent = document.getElementById("vf-content");
 const inputPlatform = document.getElementById("new-platform");
 const btnAddPlatform = document.getElementById("btn-add-platform");
 
@@ -38,14 +40,14 @@ function renderPlatform() {
     state.platforms.forEach((name, index) => {
         const item = document.createElement('li');
         item.innerHTML = `
-		<span>${name}</span>
-		<button onclick="deletePlatform(${index})">borrar</button>
+		<input type="checkbox" value="${name}">${name}</span>
+		<button class="btn-delete-plat" onclick="deletePlatform(${index})">X</button>
 		`;
         listPlatforms.appendChild(item);
     });
 }
 
-function renderTabs(){
+function renderTabs() {
 	tabsHeader.innerHTML = '';
 	
 	state.data.forEach(data => {
@@ -55,17 +57,18 @@ function renderTabs(){
 		if(data.id === state.tabActive){
 			btn.classList.add('active');
 		}
-		btn.onclick = () => changeTab(state.id);
-		
+		btn.onclick = () => changeTab(data.id);
 		tabsHeader.appendChild(btn)
 	});
 }
-
-updateTabContent(){
-	const ActiveData = state.data.find(d => d.id === state.tabActive)
+/**/
+function updateTabContent() {
+const ActiveData = state.data.find(d => d.id === state.tabActive);
 
 	if(ActiveData){
-		tab-content.value = ActiveData.text;
+		tabContent.value = ActiveData.text;
+	} else {
+		tabContent.value = '';
 	}
 }
 
@@ -74,22 +77,46 @@ updateTabContent(){
 
 function addPlatform() {
     const newElement = inputPlatform.value;
-    if (newElement !== '') {
+    if (newElement) {
         state.platforms.push(newElement);
         inputPlatform.value = '';
-        render();
+        renderPlatform();
     }
 }
 
 
 window.deletePlatform = function (index) {
-    platforms.splice(index, 1);
-    render();
+    state.platforms.splice(index, 1);
+    renderPlatform();
+}
+
+function changeTab(newID) {
+	state.tabActive = newID;
+	renderTabs();
+	updateTabContent();
+}
+
+function deleteTab() {
+	if(state.data.length <= 1){
+		return;
+	}
+	if(confirm("Do you want to delete the tab?")) {
+		const index = state.data.findIndex(d => d.id === state.tabActive);
+		state.date.splice(index,1);
+		
+	}
 }
 
 
+btnAddPlatform.addEventListener('click', addPlatform);
+btnAddTab.addEventListener('click', addNewTab);
+btnDeleteTab.addEventListener('click',);
+addNewTab
 
-btnAddPlatform.addEventListener('click', addPlatform)
+
+
+
+
 
 renderAll();
 
@@ -186,17 +213,7 @@ function cambiarTab(nuevoId) {
     actualizarContenidoTab(); // Para cambiar el texto del textarea
 }
 
-// Cuando el usuario escribe en el textarea, guardamos eso en el Estado
-tabContenido.addEventListener('input', (e) => {
-    const textoEscrito = e.target.value;
-
-    // Buscar el dato activo y actualizar su propiedad .texto
-    const datoActivo = estado.datos.find(d => d.id === estado.tabActiva);
-    if (datoActivo) {
-        datoActivo.texto = textoEscrito;
-    }
-});
-
+ 
 // --- 5. EVENTOS ---
 btnAgregar.addEventListener('click', agregarPlataforma);
 
